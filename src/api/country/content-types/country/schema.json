@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "countries",
+  "info": {
+    "singularName": "country",
+    "pluralName": "countries",
+    "displayName": "Country",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "CountryName": {
+      "type": "string"
+    },
+    "CountryFlag": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "continent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::continent.continent",
+      "inversedBy": "countries"
+    },
+    "Enabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "details": {
+      "displayName": "Content",
+      "type": "component",
+      "repeatable": false,
+      "component": "content.content"
+    },
+    "why_choose_us": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.content"
+    },
+    "reasons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.content"
+    },
+    "top_institutes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "content.content"
+    },
+    "courselist": {
+      "displayName": "courselist",
+      "type": "component",
+      "repeatable": true,
+      "component": "title.courselist"
+    },
+    "banner_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "top_institutes_description": {
+      "type": "text"
+    }
+  }
+}

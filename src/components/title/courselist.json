@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_title_courselists",
+  "info": {
+    "displayName": "courselist",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "course_name": {
+      "type": "string"
+    }
+  }
+}

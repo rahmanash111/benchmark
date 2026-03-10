@@ -1,0 +1,125 @@
+{
+  "kind": "collectionType",
+  "collectionName": "eventslists",
+  "info": {
+    "singularName": "eventslist",
+    "pluralName": "eventslists",
+    "displayName": "Eventslist",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "eventname": {
+      "type": "string"
+    },
+    "eventdate": {
+      "type": "date"
+    },
+    "bannerimg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "countryname": {
+      "type": "string"
+    },
+    "eventtime": {
+      "type": "datetime"
+    },
+    "venue": {
+      "type": "string"
+    },
+    "section2title": {
+      "type": "string"
+    },
+    "section2description": {
+      "type": "text"
+    },
+    "section2shorttitle": {
+      "type": "string"
+    },
+    "why_you_should_description": {
+      "type": "string"
+    },
+    "why_you_should_short_title": {
+      "type": "string"
+    },
+    "why_you_should_short_description": {
+      "type": "text"
+    },
+    "exciting_program_description": {
+      "type": "text"
+    },
+    "exciting_program_key_features": {
+      "type": "json"
+    },
+    "list_of_key_benefits": {
+      "type": "json"
+    },
+    "event_guest_title": {
+      "type": "string"
+    },
+    "guest_name": {
+      "type": "string"
+    },
+    "guest_designation": {
+      "type": "string"
+    },
+    "guest_description": {
+      "type": "text"
+    },
+    "guest_img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "benefits_bannerimg": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "countryflag": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "event_Invite_Video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

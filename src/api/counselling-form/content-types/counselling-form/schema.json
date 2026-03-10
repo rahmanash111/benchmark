@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "counselling_forms",
+  "info": {
+    "singularName": "counselling-form",
+    "pluralName": "counselling-forms",
+    "displayName": "Counselling Form",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "FirstName": {
+      "type": "string"
+    },
+    "LastName": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Phone": {
+      "type": "biginteger",
+      "max": "9999999999"
+    },
+    "Age": {
+      "type": "integer"
+    },
+    "Gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female",
+        "prefer-not-to-say"
+      ]
+    },
+    "Country": {
+      "type": "string"
+    },
+    "HighestLevelofEducationCompleted": {
+      "type": "string"
+    },
+    "FielfOfStudy": {
+      "type": "string"
+    },
+    "PreviousCounsellingExperience": {
+      "type": "boolean"
+    },
+    "Queries": {
+      "type": "text"
+    },
+    "OtherCountry": {
+      "type": "string"
+    },
+    "OtherAdditionalInformation": {
+      "type": "string"
+    },
+    "PreferredStudyDestinations": {
+      "type": "json"
+    },
+    "AdditionalInformation": {
+      "type": "json"
+    }
+  }
+}

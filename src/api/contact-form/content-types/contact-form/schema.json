@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contact_forms",
+  "info": {
+    "singularName": "contact-form",
+    "pluralName": "contact-forms",
+    "displayName": "ContactForm",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "Subject": {
+      "type": "string"
+    },
+    "Phone": {
+      "type": "biginteger",
+      "max": "9999999999"
+    },
+    "Message": {
+      "type": "text"
+    }
+  }
+}
