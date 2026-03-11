@@ -1,4 +1,4 @@
-# This workflow is triggered on push to the main branch and deploys the Strapi application on a self-hosted runner. and also the npm install is not added in the workflow, you may want to add it before restarting Strapi to ensure that all dependencies are up to date. Here's an updated version of the workflow with the npm install step included:
+# This workflow is triggered on push to the main branch and deploys the Strapi application on a self-hosted runner.
 
 name: Deploy Strapi
 
@@ -12,15 +12,23 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Update project
-        shell: cmd
-        run: |
-          cd C:\A_Benchmark\benchmark_be\benchmark
-          git pull origin main
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Strapi
+        run: npm run build
 
       - name: Restart Strapi
         shell: cmd
         run: |
-          taskkill /FI "WINDOWTITLE eq STRAPI_BENCHMARK" /F
-          start "STRAPI_BENCHMARK" cmd /k "cd C:\A_Benchmark\benchmark_be\benchmark && C:\Users\direc\AppData\Local\nvm\v20.20.1\npm.cmd run develop"
+          taskkill /F /FI "WINDOWTITLE eq STRAPI_BENCHMARK" /T || echo "No existing Strapi process found to kill."
+          start "STRAPI_BENCHMARK" cmd /c "npm run start"
