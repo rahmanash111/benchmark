@@ -12,23 +12,28 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
+      - name: Update project code
+        shell: cmd
+        run: |
+          cd /d C:\A_Benchmark\benchmark_be\benchmark
+          git fetch origin
+          git reset --hard origin/main
 
       - name: Install dependencies
-        run: npm install
+        shell: cmd
+        run: |
+          cd /d C:\A_Benchmark\benchmark_be\benchmark
+          npm install
 
       - name: Build Strapi
-        run: npm run build
+        shell: cmd
+        run: |
+          cd /d C:\A_Benchmark\benchmark_be\benchmark
+          npm run build
 
       - name: Restart Strapi
         shell: cmd
         run: |
           taskkill /F /FI "WINDOWTITLE eq STRAPI_BENCHMARK" /T 2>nul || exit 0
+          cd /d C:\A_Benchmark\benchmark_be\benchmark
           start "STRAPI_BENCHMARK" cmd /c "title STRAPI_BENCHMARK && npm run start"
