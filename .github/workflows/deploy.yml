@@ -20,15 +20,16 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Surgical Stop Strapi (Unlock Files)
+      - name: Surgical Stop Strapi (WMI-Free Kill)
         shell: cmd
         run: |
           @echo off
-          for /f "tokens=2 delims=," %%a in ('wmic process where "CommandLine like '%%C:\\A_Benchmark\\%%'" get ProcessId /format:csv 2^>nul ^| findstr /r [0-9]') do (
-            echo Killing Strapi PID: %%a
-            taskkill /F /PID %%a /T 2>nul
+          echo Searching for Strapi process (Title: STRAPI_BENCHMARK) ...
+          for /f "tokens=2" %%a in ('tasklist /V /FI "IMAGENAME eq node.exe" ^| findstr /I "STRAPI_BENCHMARK"') do (
+              echo Killing Strapi PID: %%a
+              taskkill /F /PID %%a /T 2>nul
           )
-          timeout /t 2 /nobreak >nul || exit 0
+          timeout /t 3 /nobreak >nul || exit 0
 
       - name: Update project code
         shell: cmd
