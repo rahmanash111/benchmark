@@ -19,7 +19,8 @@ jobs:
       - name: Install packages
         run: |
           cd C:\A_Benchmark\benchmark_be\benchmark
-          cmd /c "C:\nvm4w\nodejs\npm.cmd install"
+          npm install
+        shell: cmd
 
       - name: Restart Strapi
         run: |
