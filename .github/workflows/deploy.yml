@@ -22,6 +22,7 @@ jobs:
         shell: cmd
         run: |
           cd C:\A_Benchmark\benchmark_be\benchmark
+          rmdir /s /q node_modules
           C:\Users\direc\AppData\Local\nvm\v20.20.1\npm.cmd ci
 
       - name: Restart Strapi
