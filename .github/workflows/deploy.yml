@@ -12,17 +12,20 @@ jobs:
     steps:
 
       - name: Update project
+        shell: cmd
         run: |
           cd C:\A_Benchmark\benchmark_be\benchmark
+          git reset --hard
           git pull origin main
 
       - name: Install packages
+        shell: cmd
         run: |
           cd C:\A_Benchmark\benchmark_be\benchmark
-          C:\Users\direc\AppData\Local\nvm\v20.20.1\npm.cmd install
-        shell: cmd
+          C:\Users\direc\AppData\Local\nvm\v20.20.1\npm.cmd ci
 
       - name: Restart Strapi
+        shell: cmd
         run: |
           taskkill /FI "WINDOWTITLE eq STRAPI_BENCHMARK" /F
-          start "STRAPI_BENCHMARK" cmd /k "cd C:\A_Benchmark\benchmark_be\benchmark && C:\nvm4w\nodejs\npm.cmd run develop"
+          start "STRAPI_BENCHMARK" cmd /k "cd C:\A_Benchmark\benchmark_be\benchmark && C:\Users\direc\AppData\Local\nvm\v20.20.1\npm.cmd run develop"
