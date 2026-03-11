@@ -11,12 +11,12 @@ jobs:
 
     steps:
 
-      - name: Pull latest code
+      - name: Update project
         run: |
           cd C:\A_Benchmark\benchmark_be\benchmark
           git pull origin main
 
-      - name: Install dependencies
+      - name: Install packages
         run: |
           cd C:\A_Benchmark\benchmark_be\benchmark
           C:\nvm4w\nodejs\npm.cmd install
