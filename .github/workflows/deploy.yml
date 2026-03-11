@@ -1,4 +1,4 @@
-name: Deploy Backend
+name: Deploy Strapi
 
 on:
   push:
@@ -10,6 +10,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
+
       - name: Pull latest code
         run: |
           cd C:\A_Benchmark\benchmark_be\benchmark
@@ -18,4 +19,9 @@ jobs:
       - name: Install dependencies
         run: |
           cd C:\A_Benchmark\benchmark_be\benchmark
-          npm install
+          C:\nvm4w\nodejs\npm.cmd install
+
+      - name: Restart Strapi
+        run: |
+          taskkill /FI "WINDOWTITLE eq STRAPI_BENCHMARK" /F
+          start "STRAPI_BENCHMARK" cmd /k "cd C:\A_Benchmark\benchmark_be\benchmark && C:\nvm4w\nodejs\npm.cmd run develop"
