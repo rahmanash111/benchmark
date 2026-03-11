@@ -20,23 +20,23 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Surgical Stop Strapi (WMI-Free Kill)
+      - name: Stop Strapi (Surgical)
         shell: cmd
         run: |
-          @echo off
-          echo Searching for Strapi process (Title: STRAPI_BENCHMARK) ...
-          for /f "tokens=2" %%a in ('tasklist /V /FI "IMAGENAME eq node.exe" ^| findstr /I "STRAPI_BENCHMARK"') do (
-              echo Killing Strapi PID: %%a
-              taskkill /F /PID %%a /T 2>nul
-          )
+          taskkill /F /FI "WINDOWTITLE eq STRAPI_BENCHMARK" /T 2>nul || exit 0
           timeout /t 3 /nobreak >nul || exit 0
 
-      - name: Update project code
+      - name: Update & Resolve Locks
         shell: cmd
         run: |
           cd /d C:\A_Benchmark\benchmark_be\benchmark
           git fetch origin
           git reset --hard origin/main
+          @echo off
+          if exist node_modules\@apollo (
+            echo "Clearing corrupted apollo folder to fix ENOTDIR..."
+            rmdir /s /q node_modules\@apollo 2>nul
+          )
 
       - name: Install dependencies
         shell: cmd
