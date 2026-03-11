@@ -19,7 +19,7 @@ jobs:
       - name: Install packages
         run: |
           cd C:\A_Benchmark\benchmark_be\benchmark
-          npm install
+          C:\Users\direc\AppData\Local\nvm\v20.20.1\npm.cmd install
         shell: cmd
 
       - name: Restart Strapi
