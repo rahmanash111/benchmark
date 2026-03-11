@@ -20,10 +20,21 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Stop Running Strapi
-        shell: cmd
+      - name: Surgical Stop Strapi (Unlock Files)
+        shell: powershell
         run: |
-          taskkill /F /FI "WINDOWTITLE eq STRAPI_BENCHMARK" /T 2>nul || exit 0
+          $projectPath = "C:\A_Benchmark\benchmark_be\benchmark"
+          Write-Host "Searching for processes in $projectPath ..."
+          $processes = Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like "*$projectPath*" -and $_.Name -ne "powershell.exe" }
+          if ($processes) {
+              foreach ($p in $processes) {
+                  Write-Host "Killing process: $($p.Name) (PID: $($p.ProcessId))"
+                  Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue
+              }
+          } else {
+              Write-Host "No processes found for this project."
+          }
+          Start-Sleep -s 2 # Give Windows a moment to release file locks
 
       - name: Update project code
         shell: cmd
