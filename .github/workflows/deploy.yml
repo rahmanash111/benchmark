@@ -20,23 +20,26 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Stop Strapi (Surgical)
+      - name: Stop Strapi (Port 1338)
         shell: cmd
         run: |
-          taskkill /F /FI "WINDOWTITLE eq STRAPI_BENCHMARK" /T 2>nul || exit 0
+          @echo off
+          for /f "tokens=5" %%a in ('netstat -aon ^| findstr :1338 ^| findstr LISTENING 2^>nul') do (
+            echo Killing Strapi PID on Port 1338: %%a
+            taskkill /F /PID %%a /T 2>nul
+          )
           timeout /t 3 /nobreak >nul || exit 0
 
-      - name: Update & Resolve Locks
+      - name: Hardened Sync & Cleanup
         shell: cmd
         run: |
           cd /d C:\A_Benchmark\benchmark_be\benchmark
           git fetch origin
           git reset --hard origin/main
           @echo off
-          if exist node_modules\@apollo (
-            echo "Clearing corrupted apollo folder to fix ENOTDIR..."
-            rmdir /s /q node_modules\@apollo 2>nul
-          )
+          echo "Wiping node_modules to ensure 100%% clean install..."
+          if exist node_modules rmdir /s /q node_modules 2>nul
+          if exist .git\index.lock del .git\index.lock 2>nul
 
       - name: Install dependencies
         shell: cmd
